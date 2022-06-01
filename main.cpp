@@ -6,6 +6,8 @@
 
 using namespace std;
 
+
+
 int random(int min, int max)
 {
    static bool first = true;
@@ -16,6 +18,11 @@ int random(int min, int max)
    }
    return min + rand() % (( max + 1 ) - min);
 }
+ 
+int insert;
+int randX = random(5, 13);
+int randY = random(5, 9);
+
 
 struct Vector2{
 
@@ -36,17 +43,42 @@ struct Vector2{
 
 };
 
-Vector2 Position(int randA, int randB){
+Vector2 snake(randX, randY);
 
-    Vector2 snake(randA, randB);
+void Position(Vector2 &snake){
+    
+    cin >> insert;
+    switch(insert){
 
-    return snake;
+        case 1:
+        snake.x += 1;
+        break;
+
+        case 2:
+        snake.x -= 1;
+        break;
+
+        case 3:
+        snake.y -= 1;
+        break;
+
+        case 4:
+        snake.y += 1;
+        break;
+
+        default:
+        cout << "Enter a valid direction" << endl;
+        break;
+
+    }
+
+    
+
 }
 
 void Draw(){
 
-    int randX = random(5, 13);
-    int randY = random(5, 9);
+    
     int height = 17;
     int full_length = 15;
     char upper = '-';
@@ -67,8 +99,8 @@ void Draw(){
         
         cout << side;
         for (int x = 0; x < full_length; x++){
-            if (x == Position(12, 8).x){
-                if (y == Position(9, 8).y){
+            if (x == snake.x){
+                if (y == snake.y){
                     cout << snake_char;
                 }
                 else{
@@ -95,9 +127,12 @@ void Draw(){
 
 
 int main() {
-
-
-  Draw();
+    bool game = true;
+    while (game){
+        Draw();
+        Position(snake);
+    }
+  
   
 
 
