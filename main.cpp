@@ -19,7 +19,8 @@ int random(int min, int max)
    return min + rand() % (( max + 1 ) - min);
 }
  
-int insert;
+
+char insert;
 int randX = random(5, 13);
 int randY = random(5, 9);
 
@@ -44,25 +45,26 @@ struct Vector2{
 };
 
 Vector2 snake(randX, randY);
+vector<Vector2> snakeParts;
 
 void Position(Vector2 &snake){
     
     cin >> insert;
     switch(insert){
 
-        case 1:
+        case 'd':
         snake.x += 1;
         break;
 
-        case 2:
+        case 'a':
         snake.x -= 1;
         break;
 
-        case 3:
+        case 'w':
         snake.y -= 1;
         break;
 
-        case 4:
+        case 's':
         snake.y += 1;
         break;
 
